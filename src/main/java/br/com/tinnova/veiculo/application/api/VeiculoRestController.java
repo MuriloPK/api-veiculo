@@ -50,4 +50,13 @@ public class VeiculoRestController implements VeiculoAPI {
 		log.info("[finaliza] VeiculoRestController - deletaVeiculoAtravesId");
 		
 	}
+
+	@Override
+	public void patchAlteraVeiculo(UUID idVeiculo, @Valid VeiculoAlteracaoRequest veiculoAlteracaoRequest) {
+		log.info("[inicia] VeiculoRestController - patchAlteraVeiculo");
+		log.info("[idVeiculo]{}", idVeiculo);
+		veiculoService.patchAlteraVeiculo(idVeiculo, veiculoAlteracaoRequest);
+		log.info("[inicia] VeiculoRestController - patchAlteraVeiculo");
+
+	}
 }

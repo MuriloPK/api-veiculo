@@ -7,6 +7,7 @@ import javax.validation.Valid;
 
 import org.springframework.stereotype.Service;
 
+import br.com.tinnova.veiculo.application.api.VeiculoAlteracaoRequest;
 import br.com.tinnova.veiculo.application.api.VeiculoDetalhadoResponse;
 import br.com.tinnova.veiculo.application.api.VeiculoListResponse;
 import br.com.tinnova.veiculo.application.api.VeiculoRequest;
@@ -52,6 +53,16 @@ public class VeiculoApplicationService implements VeiculoService {
 		Veiculo veiculo = veiculoRepository.buscaVeiculoAtravesId(idVeiculo);
 		veiculoRepository.deletaVeiculoAtravesId(veiculo);
 		log.info("[finaliza] VeiculoApplicationService - deletaVeiculoAtravesId");
+		
+	}
+
+	@Override
+	public void patchAlteraVeiculo(UUID idVeiculo, @Valid VeiculoAlteracaoRequest veiculoAlteracaoRequest) {
+		log.info("[inicia] VeiculoApplicationService - patchAlteraVeiculo");
+		Veiculo veiculo = veiculoRepository.buscaVeiculoAtravesId(idVeiculo);
+		veiculo.altera(veiculoAlteracaoRequest);
+		veiculoRepository.salva(veiculo);
+		log.info("[inicia] VeiculoApplicationService - patchAlteraVeiculo");
 		
 	}
 }
