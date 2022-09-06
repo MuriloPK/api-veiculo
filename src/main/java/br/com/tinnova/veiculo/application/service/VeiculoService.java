@@ -14,4 +14,5 @@ public interface VeiculoService {
 	VeiculoResponse criaVeiculo(@Valid VeiculoRequest veiculoRequest);
 	List<VeiculoListResponse> buscaTodosVeiculos();
 	VeiculoDetalhadoResponse buscaVeiculoAtravesId(UUID idVeiculo);
+	void deletaVeiculoAtravesId(UUID idVeiculo);
 }
