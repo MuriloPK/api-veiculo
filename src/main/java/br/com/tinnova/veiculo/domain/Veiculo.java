@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
+import br.com.tinnova.veiculo.application.api.VeiculoRequest;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -23,8 +24,8 @@ import lombok.NoArgsConstructor;
 public class Veiculo {
 
 	@Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(columnDefinition = "uuid",name = "id", updatable = false, unique = true, nullable = false)
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(columnDefinition = "uuid", name = "id", updatable = false, unique = true, nullable = false)
 	private UUID idVeiculo;
 	@NotBlank
 	private String nomeVeiculo;
@@ -33,10 +34,18 @@ public class Veiculo {
 	@NotNull
 	private Integer ano;
 	private String descricao;
-	@NotNull
 	@Enumerated(EnumType.STRING)
 	private StatusVeiculo status;
-	
+
 	private LocalDateTime dataHoraDoCadastro;
 	private LocalDateTime dataHoraDaUltimaAtualizacao;
+
+	public Veiculo(VeiculoRequest veiculoRequest) {
+		this.nomeVeiculo = veiculoRequest.getNomeVeiculo();
+		this.marca = veiculoRequest.getMarca();
+		this.ano = veiculoRequest.getAno();
+		this.descricao = veiculoRequest.getDescricao();
+		this.status = StatusVeiculo.EM_ESTOQUE;
+		this.dataHoraDoCadastro = LocalDateTime.now();
+	}
 }

@@ -16,6 +16,5 @@ public class VeiculoRequest {
 	@NotNull
 	private Integer ano;
 	private String descricao;
-	@NotNull
 	private StatusVeiculo status;
 }
