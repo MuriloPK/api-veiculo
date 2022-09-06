@@ -20,7 +20,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @Data
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
-public class veiculo {
+public class Veiculo {
 
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)

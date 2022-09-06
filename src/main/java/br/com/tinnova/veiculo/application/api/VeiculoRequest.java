@@ -3,7 +3,7 @@ package br.com.tinnova.veiculo.application.api;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
-import br.com.tinnova.veiculo.domain.veiculo;
+import br.com.tinnova.veiculo.domain.Veiculo;
 import lombok.Value;
 
 @Value
@@ -17,5 +17,5 @@ public class VeiculoRequest {
 	private Integer ano;
 	private String descricao;
 	@NotNull
-	private veiculo vendido;
+	private Veiculo vendido;
 }
