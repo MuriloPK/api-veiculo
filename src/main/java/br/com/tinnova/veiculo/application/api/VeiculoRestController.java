@@ -1,5 +1,7 @@
 package br.com.tinnova.veiculo.application.api;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.web.bind.annotation.RestController;
@@ -22,4 +24,11 @@ public class VeiculoRestController implements VeiculoAPI {
 		return veiculoCriado;
 	}
 
+	@Override
+	public List<VeiculoListResponse> getTodosVeiculos() {
+		log.info("[inicia] VeiculoRestController - getTodosVeiculos");
+		List<VeiculoListResponse> veiculos = veiculoService.buscaTodosVeiculos();
+		log.info("[finaliza] VeiculoRestController - getTodosVeiculos");
+		return veiculos;
+	}
 }
