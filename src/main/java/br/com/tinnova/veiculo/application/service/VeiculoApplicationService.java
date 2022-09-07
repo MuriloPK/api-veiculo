@@ -7,6 +7,7 @@ import javax.validation.Valid;
 
 import org.springframework.stereotype.Service;
 
+import br.com.tinnova.veiculo.application.api.VeiculoAlteraStatusRequest;
 import br.com.tinnova.veiculo.application.api.VeiculoAlteracaoRequest;
 import br.com.tinnova.veiculo.application.api.VeiculoDetalhadoResponse;
 import br.com.tinnova.veiculo.application.api.VeiculoListResponse;
@@ -57,12 +58,21 @@ public class VeiculoApplicationService implements VeiculoService {
 	}
 
 	@Override
-	public void patchAlteraVeiculo(UUID idVeiculo, @Valid VeiculoAlteracaoRequest veiculoAlteracaoRequest) {
-		log.info("[inicia] VeiculoApplicationService - patchAlteraVeiculo");
+	public void putAlteraVeiculo(UUID idVeiculo, @Valid VeiculoAlteracaoRequest veiculoAlteracaoRequest) {
+		log.info("[inicia] VeiculoApplicationService - putAlteraVeiculo");
 		Veiculo veiculo = veiculoRepository.buscaVeiculoAtravesId(idVeiculo);
 		veiculo.altera(veiculoAlteracaoRequest);
 		veiculoRepository.salva(veiculo);
-		log.info("[inicia] VeiculoApplicationService - patchAlteraVeiculo");
+		log.info("[inicia] VeiculoApplicationService - putAlteraVeiculo");
 		
+	}
+
+	@Override
+	public void patchAtualizaStatusVeiculo(UUID idVeiculo, @Valid VeiculoAlteraStatusRequest veiculoAlteraStatusRequest) {
+		log.info("[inicia] VeiculoApplicationService - patchAtualizaStatusVeiculo");
+		Veiculo veiculo = veiculoRepository.buscaVeiculoAtravesId(idVeiculo);
+		veiculo.atualiza(veiculoAlteraStatusRequest);
+		veiculoRepository.salva(veiculo);
+		log.info("[finaliza] VeiculoApplicationService - patchAtualizaStatusVeiculo");
 	}
 }

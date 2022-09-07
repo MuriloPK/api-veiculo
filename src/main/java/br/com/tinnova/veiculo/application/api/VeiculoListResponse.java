@@ -12,9 +12,7 @@ public class VeiculoListResponse {
 
 	private UUID idVeiculo;
 	private String nomeVeiculo;
-	private String marca;
 	private Integer ano;
-	private String descricao;
 	private StatusVeiculo status;
 	
 	public static List<VeiculoListResponse> converte(List<Veiculo> veiculos) {
@@ -26,9 +24,7 @@ public class VeiculoListResponse {
 	public VeiculoListResponse(Veiculo veiculo) {
 		this.idVeiculo = veiculo.getIdVeiculo();
 		this.nomeVeiculo = veiculo.getNomeVeiculo();
-		this.marca = veiculo.getMarca();
 		this.ano = veiculo.getAno();
-		this.descricao = veiculo.getDescricao();
 		this.status = veiculo.getStatus();
 	}
 }
