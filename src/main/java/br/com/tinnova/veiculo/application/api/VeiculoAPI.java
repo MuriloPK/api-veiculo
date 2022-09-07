@@ -29,21 +29,25 @@ public interface VeiculoAPI {
 	@ResponseStatus(code = HttpStatus.OK)
 	List<VeiculoListResponse> getTodosVeiculos();
 	
+	@GetMapping(value = "/estoque")
+	@ResponseStatus(code = HttpStatus.OK)
+	List<VeiculoListEstoqueResponse> getVeiculosEmEstoque();
+
 	@GetMapping(value = "/{idVeiculo}")
 	@ResponseStatus(code = HttpStatus.OK)
 	VeiculoDetalhadoResponse getVeiculoAtravesId(@PathVariable UUID idVeiculo);
 	
-	@DeleteMapping(value = "/{idVeiculo}")
+	@PatchMapping(value = "/{idVeiculo}")
 	@ResponseStatus(code = HttpStatus.NO_CONTENT)
-	void  deletaVeiculoAtravesId(@PathVariable UUID idVeiculo);
+	void  patchAtualizaStatusVeiculo(@PathVariable UUID idVeiculo,
+			@Valid @RequestBody VeiculoAlteraStatusRequest veiculoAlteraStatusRequest);
 	
 	@PutMapping(value = "/{idVeiculo}")
 	@ResponseStatus(code = HttpStatus.NO_CONTENT)
 	void  putAlteraVeiculo(@PathVariable UUID idVeiculo,
 			@Valid @RequestBody VeiculoAlteracaoRequest veiculoAlteracaoRequest);
 	
-	@PatchMapping(value = "/{idVeiculo}")
+	@DeleteMapping(value = "/{idVeiculo}")
 	@ResponseStatus(code = HttpStatus.NO_CONTENT)
-	void  patchAtualizaStatusVeiculo(@PathVariable UUID idVeiculo,
-			@Valid @RequestBody VeiculoAlteraStatusRequest veiculoAlteraStatusRequest);
+	void  deletaVeiculoAtravesId(@PathVariable UUID idVeiculo);
 }

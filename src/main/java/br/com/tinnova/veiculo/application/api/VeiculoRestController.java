@@ -32,6 +32,13 @@ public class VeiculoRestController implements VeiculoAPI {
 		log.info("[finaliza] VeiculoRestController - getTodosVeiculos");
 		return veiculos;
 	}
+	@Override
+	public List<VeiculoListEstoqueResponse> getVeiculosEmEstoque() {
+		log.info("[inicia] VeiculoRestController - getVeiculosEmEstoque");
+		List<VeiculoListEstoqueResponse> veiculosEstoque = veiculoService.listaEstoqueVeiculos();
+		log.info("[finaliza] VeiculoRestController - getVeiculosEmEstoque");
+		return veiculosEstoque;
+	}
 
 	@Override
 	public VeiculoDetalhadoResponse getVeiculoAtravesId(UUID idVeiculo) {
@@ -68,4 +75,5 @@ public class VeiculoRestController implements VeiculoAPI {
 		log.info("[finaliza]VeiculoRestController - patchAtualizaStatusVeiculo");
 		
 	}
+
 }

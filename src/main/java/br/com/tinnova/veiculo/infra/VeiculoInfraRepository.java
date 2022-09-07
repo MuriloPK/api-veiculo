@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Repository;
 
 import br.com.tinnova.veiculo.application.repository.VeiculoRepository;
+import br.com.tinnova.veiculo.domain.StatusVeiculo;
 import br.com.tinnova.veiculo.domain.Veiculo;
 import br.com.tinnova.veiculo.handler.APIException;
 import lombok.RequiredArgsConstructor;
@@ -33,7 +34,13 @@ public class VeiculoInfraRepository implements VeiculoRepository {
 		log.info("[finaliza] VeiculoInfraRepository - buscaTodosVeiculos");
 		return todosVeiculos;
 	}
-
+	@Override
+	public List<Veiculo> listaEstoqueVeiculos() {
+		log.info("[inicia] VeiculoInfraRepository - listaEstoqueVeiculos");
+		List<Veiculo> veiculosEstoque = veiculoSpringDataJPARepository.findByStatus(StatusVeiculo.EM_ESTOQUE);
+		log.info("[finaliza] VeiculoInfraRepository - listaEstoqueVeiculos");
+		return veiculosEstoque;
+	}
 	@Override
 	public Veiculo buscaVeiculoAtravesId(UUID idVeiculo) {
 		log.info("[inicia] VeiculoInfraRepository - buscaVeiculoAtravesId");

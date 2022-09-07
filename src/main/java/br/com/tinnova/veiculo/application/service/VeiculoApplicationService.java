@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import br.com.tinnova.veiculo.application.api.VeiculoAlteraStatusRequest;
 import br.com.tinnova.veiculo.application.api.VeiculoAlteracaoRequest;
 import br.com.tinnova.veiculo.application.api.VeiculoDetalhadoResponse;
+import br.com.tinnova.veiculo.application.api.VeiculoListEstoqueResponse;
 import br.com.tinnova.veiculo.application.api.VeiculoListResponse;
 import br.com.tinnova.veiculo.application.api.VeiculoRequest;
 import br.com.tinnova.veiculo.application.api.VeiculoResponse;
@@ -38,6 +39,13 @@ public class VeiculoApplicationService implements VeiculoService {
 		List<Veiculo> veiculos = veiculoRepository.buscaTodosVeiculos();
 		log.info("[finaliza] VeiculoApplicationService - buscaTodosVeiculos");
 		return VeiculoListResponse.converte(veiculos);
+	}
+	@Override
+	public List<VeiculoListEstoqueResponse> listaEstoqueVeiculos() {
+		log.info("[inicia] VeiculoApplicationService - listaEstoqueVeiculos");
+		List<Veiculo> veiculosEstoque = veiculoRepository.listaEstoqueVeiculos();
+		log.info("[finaliza] VeiculoApplicationService - listaEstoqueVeiculos");
+		return VeiculoListEstoqueResponse.converte(veiculosEstoque);
 	}
 
 	@Override
@@ -75,4 +83,5 @@ public class VeiculoApplicationService implements VeiculoService {
 		veiculoRepository.salva(veiculo);
 		log.info("[finaliza] VeiculoApplicationService - patchAtualizaStatusVeiculo");
 	}
+
 }
