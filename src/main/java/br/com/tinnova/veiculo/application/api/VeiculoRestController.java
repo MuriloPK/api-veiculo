@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.tinnova.veiculo.application.service.VeiculoService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+
 @RestController
 @Log4j2
 @RequiredArgsConstructor
@@ -32,12 +33,21 @@ public class VeiculoRestController implements VeiculoAPI {
 		log.info("[finaliza] VeiculoRestController - getTodosVeiculos");
 		return veiculos;
 	}
+
 	@Override
 	public List<VeiculoListEstoqueResponse> getVeiculosEmEstoque() {
 		log.info("[inicia] VeiculoRestController - getVeiculosEmEstoque");
 		List<VeiculoListEstoqueResponse> veiculosEstoque = veiculoService.listaEstoqueVeiculos();
 		log.info("[finaliza] VeiculoRestController - getVeiculosEmEstoque");
 		return veiculosEstoque;
+	}
+
+	@Override
+	public List<VeiculoListFabricacaoResponse> getVeiculosAnoFabricacao(Integer ano) {
+		log.info("[inicia] VeiculoRestController - getVeiculosAnoFabricacao");
+		List<VeiculoListFabricacaoResponse> veiculosAnoFabricacao = veiculoService.listaAnoFabricacaoVeiculos(ano);
+		log.info("[finaliza] VeiculoRestController - getVeiculosAnoFabricacao");
+		return veiculosAnoFabricacao;
 	}
 
 	@Override
@@ -55,7 +65,7 @@ public class VeiculoRestController implements VeiculoAPI {
 		log.info("[idVeiculo]{}", idVeiculo);
 		veiculoService.deletaVeiculoAtravesId(idVeiculo);
 		log.info("[finaliza] VeiculoRestController - deletaVeiculoAtravesId");
-		
+
 	}
 
 	@Override
@@ -68,12 +78,12 @@ public class VeiculoRestController implements VeiculoAPI {
 	}
 
 	@Override
-	public void patchAtualizaStatusVeiculo(UUID idVeiculo, @Valid VeiculoAlteraStatusRequest veiculoAlteraStatusRequest) {
+	public void patchAtualizaStatusVeiculo(UUID idVeiculo,
+			@Valid VeiculoAlteraStatusRequest veiculoAlteraStatusRequest) {
 		log.info("[inicia]VeiculoRestController - patchAtualizaStatusVeiculo");
 		log.info("[idVeiculo]{}", idVeiculo);
 		veiculoService.patchAtualizaStatusVeiculo(idVeiculo, veiculoAlteraStatusRequest);
 		log.info("[finaliza]VeiculoRestController - patchAtualizaStatusVeiculo");
-		
-	}
 
+	}
 }

@@ -32,6 +32,10 @@ public interface VeiculoAPI {
 	@GetMapping(value = "/estoque")
 	@ResponseStatus(code = HttpStatus.OK)
 	List<VeiculoListEstoqueResponse> getVeiculosEmEstoque();
+	
+	@GetMapping(value = "/ano")
+	@ResponseStatus(code = HttpStatus.OK)
+	List<VeiculoListFabricacaoResponse> getVeiculosAnoFabricacao(Integer ano);
 
 	@GetMapping(value = "/{idVeiculo}")
 	@ResponseStatus(code = HttpStatus.OK)

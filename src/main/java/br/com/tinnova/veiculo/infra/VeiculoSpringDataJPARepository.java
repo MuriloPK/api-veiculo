@@ -11,4 +11,5 @@ import br.com.tinnova.veiculo.domain.Veiculo;
 public interface VeiculoSpringDataJPARepository extends JpaRepository<Veiculo, UUID> {
 
 	List<Veiculo> findByStatus(StatusVeiculo status);
+	List<Veiculo> findByAno(Integer ano);
 }

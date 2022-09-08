@@ -11,6 +11,7 @@ import br.com.tinnova.veiculo.application.api.VeiculoAlteraStatusRequest;
 import br.com.tinnova.veiculo.application.api.VeiculoAlteracaoRequest;
 import br.com.tinnova.veiculo.application.api.VeiculoDetalhadoResponse;
 import br.com.tinnova.veiculo.application.api.VeiculoListEstoqueResponse;
+import br.com.tinnova.veiculo.application.api.VeiculoListFabricacaoResponse;
 import br.com.tinnova.veiculo.application.api.VeiculoListResponse;
 import br.com.tinnova.veiculo.application.api.VeiculoRequest;
 import br.com.tinnova.veiculo.application.api.VeiculoResponse;
@@ -18,6 +19,7 @@ import br.com.tinnova.veiculo.application.repository.VeiculoRepository;
 import br.com.tinnova.veiculo.domain.Veiculo;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+
 @Service
 @Log4j2
 @RequiredArgsConstructor
@@ -40,12 +42,22 @@ public class VeiculoApplicationService implements VeiculoService {
 		log.info("[finaliza] VeiculoApplicationService - buscaTodosVeiculos");
 		return VeiculoListResponse.converte(veiculos);
 	}
+
 	@Override
 	public List<VeiculoListEstoqueResponse> listaEstoqueVeiculos() {
 		log.info("[inicia] VeiculoApplicationService - listaEstoqueVeiculos");
 		List<Veiculo> veiculosEstoque = veiculoRepository.listaEstoqueVeiculos();
 		log.info("[finaliza] VeiculoApplicationService - listaEstoqueVeiculos");
 		return VeiculoListEstoqueResponse.converte(veiculosEstoque);
+	}
+
+	@Override
+	public List<VeiculoListFabricacaoResponse> listaAnoFabricacaoVeiculos(Integer ano) {
+		log.info("[inicia] VeiculoApplicationService - listaAnoFabricacaoVeiculos");
+		List<Veiculo> veiculosAnoFabricacao = veiculoRepository.listaAnoFabricacaoVeiculos(ano);
+		log.info("[finaliza] VeiculoApplicationService - listaAnoFabricacaoVeiculos");
+		return VeiculoListFabricacaoResponse.converte(veiculosAnoFabricacao);
+		
 	}
 
 	@Override
@@ -62,7 +74,7 @@ public class VeiculoApplicationService implements VeiculoService {
 		Veiculo veiculo = veiculoRepository.buscaVeiculoAtravesId(idVeiculo);
 		veiculoRepository.deletaVeiculoAtravesId(veiculo);
 		log.info("[finaliza] VeiculoApplicationService - deletaVeiculoAtravesId");
-		
+
 	}
 
 	@Override
@@ -72,11 +84,12 @@ public class VeiculoApplicationService implements VeiculoService {
 		veiculo.altera(veiculoAlteracaoRequest);
 		veiculoRepository.salva(veiculo);
 		log.info("[inicia] VeiculoApplicationService - putAlteraVeiculo");
-		
+
 	}
 
 	@Override
-	public void patchAtualizaStatusVeiculo(UUID idVeiculo, @Valid VeiculoAlteraStatusRequest veiculoAlteraStatusRequest) {
+	public void patchAtualizaStatusVeiculo(UUID idVeiculo,
+			@Valid VeiculoAlteraStatusRequest veiculoAlteraStatusRequest) {
 		log.info("[inicia] VeiculoApplicationService - patchAtualizaStatusVeiculo");
 		Veiculo veiculo = veiculoRepository.buscaVeiculoAtravesId(idVeiculo);
 		veiculo.atualiza(veiculoAlteraStatusRequest);

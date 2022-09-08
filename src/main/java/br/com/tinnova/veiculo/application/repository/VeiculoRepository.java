@@ -11,4 +11,5 @@ public interface VeiculoRepository {
 	Veiculo buscaVeiculoAtravesId(UUID idVeiculo);
 	void deletaVeiculoAtravesId(Veiculo veiculo);
 	List<Veiculo> listaEstoqueVeiculos();
+	List<Veiculo> listaAnoFabricacaoVeiculos(Integer ano);
 }

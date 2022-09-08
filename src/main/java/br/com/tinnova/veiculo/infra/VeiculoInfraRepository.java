@@ -12,6 +12,7 @@ import br.com.tinnova.veiculo.domain.Veiculo;
 import br.com.tinnova.veiculo.handler.APIException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+
 @Repository
 @Log4j2
 @RequiredArgsConstructor
@@ -34,6 +35,7 @@ public class VeiculoInfraRepository implements VeiculoRepository {
 		log.info("[finaliza] VeiculoInfraRepository - buscaTodosVeiculos");
 		return todosVeiculos;
 	}
+
 	@Override
 	public List<Veiculo> listaEstoqueVeiculos() {
 		log.info("[inicia] VeiculoInfraRepository - listaEstoqueVeiculos");
@@ -41,6 +43,15 @@ public class VeiculoInfraRepository implements VeiculoRepository {
 		log.info("[finaliza] VeiculoInfraRepository - listaEstoqueVeiculos");
 		return veiculosEstoque;
 	}
+
+	@Override
+	public List<Veiculo> listaAnoFabricacaoVeiculos(Integer ano) {
+		log.info("[inicia] VeiculoInfraRepository - listaAnoFabricacaoVeiculos");
+		List<Veiculo> veiculosAnoFabricacao = veiculoSpringDataJPARepository.findByAno(ano);
+		log.info("[finaliza] VeiculoInfraRepository - listaAnoFabricacaoVeiculos");
+		return veiculosAnoFabricacao;
+	}
+
 	@Override
 	public Veiculo buscaVeiculoAtravesId(UUID idVeiculo) {
 		log.info("[inicia] VeiculoInfraRepository - buscaVeiculoAtravesId");
@@ -55,6 +66,6 @@ public class VeiculoInfraRepository implements VeiculoRepository {
 		log.info("[inicia] VeiculoInfraRepository - deletaVeiculoAtravesId");
 		veiculoSpringDataJPARepository.delete(veiculo);
 		log.info("[finaliza] VeiculoInfraRepository - deletaVeiculoAtravesId");
-		
+
 	}
 }
