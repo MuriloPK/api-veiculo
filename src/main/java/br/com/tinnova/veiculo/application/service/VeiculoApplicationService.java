@@ -12,6 +12,7 @@ import br.com.tinnova.veiculo.application.api.VeiculoAlteracaoRequest;
 import br.com.tinnova.veiculo.application.api.VeiculoDetalhadoResponse;
 import br.com.tinnova.veiculo.application.api.VeiculoListEstoqueResponse;
 import br.com.tinnova.veiculo.application.api.VeiculoListFabricacaoResponse;
+import br.com.tinnova.veiculo.application.api.VeiculoListParametrosResponse;
 import br.com.tinnova.veiculo.application.api.VeiculoListResponse;
 import br.com.tinnova.veiculo.application.api.VeiculoRequest;
 import br.com.tinnova.veiculo.application.api.VeiculoResponse;
@@ -50,7 +51,14 @@ public class VeiculoApplicationService implements VeiculoService {
 		log.info("[finaliza] VeiculoApplicationService - listaEstoqueVeiculos");
 		return VeiculoListEstoqueResponse.converte(veiculosEstoque);
 	}
-
+	@Override
+	public List<VeiculoListParametrosResponse> buscaVeiculosPorParametros(String marca, Integer ano, String cor) {
+		log.info("[inicia] VeiculoApplicationService - buscaVeiculosPorParametros");
+		List<Veiculo> veiculos = veiculoRepository.buscaVeiculosPorParametros(marca, ano, cor);
+		log.info("[finaliza] VeiculoApplicationService - buscaVeiculosPorParametros");
+		return VeiculoListParametrosResponse.converte(veiculos);
+	}
+	
 	@Override
 	public List<VeiculoListFabricacaoResponse> listaAnoFabricacaoVeiculos(Integer ano) {
 		log.info("[inicia] VeiculoApplicationService - listaAnoFabricacaoVeiculos");

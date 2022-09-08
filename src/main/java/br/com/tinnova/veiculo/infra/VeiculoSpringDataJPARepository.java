@@ -12,4 +12,5 @@ public interface VeiculoSpringDataJPARepository extends JpaRepository<Veiculo, U
 
 	List<Veiculo> findByStatus(StatusVeiculo status);
 	List<Veiculo> findByAno(Integer ano);
+	List<Veiculo> findByMarcaAndAnoAndCor(String marca, Integer ano, String cor);
 }

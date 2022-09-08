@@ -51,6 +51,14 @@ public class VeiculoInfraRepository implements VeiculoRepository {
 		log.info("[finaliza] VeiculoInfraRepository - listaAnoFabricacaoVeiculos");
 		return veiculosAnoFabricacao;
 	}
+	
+	@Override
+	public List<Veiculo> buscaVeiculosPorParametros(String marca, Integer ano, String cor) {
+		log.info("[inicia] VeiculoInfraRepository - buscaVeiculosPorParametros");
+		List<Veiculo> veiculosPorParametros = veiculoSpringDataJPARepository.findByMarcaAndAnoAndCor(marca, ano, cor);
+		log.info("[finaliza] VeiculoInfraRepository - buscaVeiculosPorParametros");
+		return veiculosPorParametros;
+	}
 
 	@Override
 	public Veiculo buscaVeiculoAtravesId(UUID idVeiculo) {

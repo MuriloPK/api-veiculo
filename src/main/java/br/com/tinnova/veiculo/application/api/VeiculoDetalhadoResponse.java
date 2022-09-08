@@ -12,6 +12,7 @@ public class VeiculoDetalhadoResponse {
 	private String nomeVeiculo;
 	private String marca;
 	private Integer ano;
+	private String cor;
 	private String descricao;
 	private StatusVeiculo status;
 	private LocalDateTime dataHoraDoCadastro;
@@ -21,6 +22,7 @@ public class VeiculoDetalhadoResponse {
 		this.nomeVeiculo = veiculo.getNomeVeiculo();
 		this.marca = veiculo.getMarca();
 		this.ano = veiculo.getAno();
+		this.cor = veiculo.getCor();
 		this.descricao = veiculo.getDescricao();
 		this.status = veiculo.getStatus();
 		this.dataHoraDoCadastro = veiculo.getDataHoraDoCadastro();

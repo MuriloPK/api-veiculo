@@ -35,6 +35,8 @@ public class Veiculo {
 	private String marca;
 	@NotNull
 	private Integer ano;
+	@NotBlank
+	private String cor;
 	private String descricao;
 	@Enumerated(EnumType.STRING)
 	private StatusVeiculo status;
@@ -46,6 +48,7 @@ public class Veiculo {
 		this.nomeVeiculo = veiculoRequest.getNomeVeiculo();
 		this.marca = veiculoRequest.getMarca();
 		this.ano = veiculoRequest.getAno();
+		this.cor = veiculoRequest.getCor();
 		this.descricao = veiculoRequest.getDescricao();
 		this.status = StatusVeiculo.EM_ESTOQUE;
 		this.dataHoraDoCadastro = LocalDateTime.now();
@@ -55,6 +58,7 @@ public class Veiculo {
 		this.nomeVeiculo = veiculoAlteracaoRequest.getNomeVeiculo();
 		this.marca = veiculoAlteracaoRequest.getMarca();
 		this.ano = veiculoAlteracaoRequest.getAno();
+		this.cor = veiculoAlteracaoRequest.getCor();
 		this.descricao = veiculoAlteracaoRequest.getDescricao();
 		this.dataHoraDaUltimaAtualizacao = LocalDateTime.now();
 	}
@@ -63,6 +67,7 @@ public class Veiculo {
 		this.nomeVeiculo = veiculoAlteraStatusRequest.getNomeVeiculo();
 		this.marca = veiculoAlteraStatusRequest.getMarca();
 		this.ano = veiculoAlteraStatusRequest.getAno();
+		this.cor = veiculoAlteraStatusRequest.getCor();
 		this.descricao = veiculoAlteraStatusRequest.getDescricao();
 		this.status = veiculoAlteraStatusRequest.getStatus();
 		this.dataHoraDaUltimaAtualizacao = LocalDateTime.now();

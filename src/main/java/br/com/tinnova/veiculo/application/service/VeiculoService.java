@@ -10,6 +10,7 @@ import br.com.tinnova.veiculo.application.api.VeiculoAlteracaoRequest;
 import br.com.tinnova.veiculo.application.api.VeiculoDetalhadoResponse;
 import br.com.tinnova.veiculo.application.api.VeiculoListEstoqueResponse;
 import br.com.tinnova.veiculo.application.api.VeiculoListFabricacaoResponse;
+import br.com.tinnova.veiculo.application.api.VeiculoListParametrosResponse;
 import br.com.tinnova.veiculo.application.api.VeiculoListResponse;
 import br.com.tinnova.veiculo.application.api.VeiculoRequest;
 import br.com.tinnova.veiculo.application.api.VeiculoResponse;
@@ -23,4 +24,5 @@ public interface VeiculoService {
 	void patchAtualizaStatusVeiculo(UUID idVeiculo, @Valid VeiculoAlteraStatusRequest veiculoAlteraStatusRequest);
 	List<VeiculoListEstoqueResponse> listaEstoqueVeiculos();
 	List<VeiculoListFabricacaoResponse> listaAnoFabricacaoVeiculos(Integer ano);
+	List<VeiculoListParametrosResponse> buscaVeiculosPorParametros(String marca, Integer ano, String cor);
 }

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -25,7 +26,7 @@ public interface VeiculoAPI {
 	@ResponseStatus(code = HttpStatus.CREATED)
 	VeiculoResponse postVeiculo(@Valid @RequestBody VeiculoRequest veiculoRequest);
 	
-	@GetMapping
+	@GetMapping(value = "/todos")
 	@ResponseStatus(code = HttpStatus.OK)
 	List<VeiculoListResponse> getTodosVeiculos();
 	
@@ -36,6 +37,12 @@ public interface VeiculoAPI {
 	@GetMapping(value = "/ano")
 	@ResponseStatus(code = HttpStatus.OK)
 	List<VeiculoListFabricacaoResponse> getVeiculosAnoFabricacao(Integer ano);
+	
+	@GetMapping
+	@ResponseStatus(code = HttpStatus.OK)
+	List<VeiculoListParametrosResponse> listaVeiculosPorParametros(@RequestParam(value = "marca") String marca,
+																   @RequestParam(value = "ano") Integer ano,
+																   @RequestParam(value = "cor") String cor);
 
 	@GetMapping(value = "/{idVeiculo}")
 	@ResponseStatus(code = HttpStatus.OK)

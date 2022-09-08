@@ -14,6 +14,8 @@ public class VeiculoAlteraStatusRequest {
 	private String marca;
 	@NotNull
 	private Integer ano;
+	@NotBlank
+	private String cor;
 	private String descricao;
 	private StatusVeiculo status;
 }

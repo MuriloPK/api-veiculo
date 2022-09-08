@@ -12,4 +12,5 @@ public interface VeiculoRepository {
 	void deletaVeiculoAtravesId(Veiculo veiculo);
 	List<Veiculo> listaEstoqueVeiculos();
 	List<Veiculo> listaAnoFabricacaoVeiculos(Integer ano);
+	List<Veiculo> buscaVeiculosPorParametros(String marca, Integer ano, String cor);
 }

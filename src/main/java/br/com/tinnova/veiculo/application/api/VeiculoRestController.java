@@ -58,6 +58,14 @@ public class VeiculoRestController implements VeiculoAPI {
 		log.info("[finaliza] VeiculoRestController - getVeiculoAtravesId");
 		return veiculoDetalhado;
 	}
+	
+	@Override
+	public List<VeiculoListParametrosResponse> listaVeiculosPorParametros(String marca, Integer ano, String cor) {
+		log.info("[inicia] VeiculoRestController - listaVeiculosPorParametros");
+		List<VeiculoListParametrosResponse> veiculosPorParametros = veiculoService.buscaVeiculosPorParametros(marca, ano, cor);
+		log.info("[finaliza] VeiculoRestController - listaVeiculosPorParametros");
+		return veiculosPorParametros;
+	}
 
 	@Override
 	public void deletaVeiculoAtravesId(UUID idVeiculo) {
