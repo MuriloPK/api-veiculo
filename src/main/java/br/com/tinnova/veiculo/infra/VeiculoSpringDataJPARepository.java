@@ -1,6 +1,5 @@
 package br.com.tinnova.veiculo.infra;
 
-import java.util.Calendar;
 import java.util.List;
 import java.util.UUID;
 
@@ -16,6 +15,4 @@ public interface VeiculoSpringDataJPARepository extends JpaRepository<Veiculo, U
 	List<Veiculo> findByAno(Integer ano);
 	List<Veiculo> findByMarcaAndAnoAndCor(Marca marca, Integer ano, String cor);
 	List<Veiculo> findByMarca(Marca marca);
-	List<Veiculo> findByDataAtual(Calendar dataAtual);
-	List<Veiculo> findByDataSemanda(Calendar dataSemanda);
 }

@@ -1,6 +1,5 @@
 package br.com.tinnova.veiculo.application.service;
 
-import java.util.Calendar;
 import java.util.List;
 import java.util.UUID;
 
@@ -14,7 +13,6 @@ import br.com.tinnova.veiculo.application.api.VeiculoListFabricacaoResponse;
 import br.com.tinnova.veiculo.application.api.VeiculoListFabricanteResponse;
 import br.com.tinnova.veiculo.application.api.VeiculoListParametrosResponse;
 import br.com.tinnova.veiculo.application.api.VeiculoListResponse;
-import br.com.tinnova.veiculo.application.api.VeiculoListSemanaResponse;
 import br.com.tinnova.veiculo.application.api.VeiculoRequest;
 import br.com.tinnova.veiculo.application.api.VeiculoResponse;
 import br.com.tinnova.veiculo.domain.Marca;
@@ -30,5 +28,4 @@ public interface VeiculoService {
 	List<VeiculoListFabricacaoResponse> listaAnoFabricacaoVeiculos(Integer ano);
 	List<VeiculoListParametrosResponse> buscaVeiculosPorParametros(Marca marca, Integer ano, String cor);
 	List<VeiculoListFabricanteResponse> listFabricanteVeiculos(Marca marca);
-	List<VeiculoListSemanaResponse> buscaVeiculosUltimaSemanda(Calendar dataAtual, Calendar dataSemana);
 }

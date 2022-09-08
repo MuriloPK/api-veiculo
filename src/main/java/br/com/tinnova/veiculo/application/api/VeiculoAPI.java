@@ -1,6 +1,5 @@
 package br.com.tinnova.veiculo.application.api;
 
-import java.util.Calendar;
 import java.util.List;
 import java.util.UUID;
 
@@ -36,10 +35,6 @@ public interface VeiculoAPI {
 	@GetMapping(value = "/estoque")
 	@ResponseStatus(code = HttpStatus.OK)
 	List<VeiculoListEstoqueResponse> getVeiculosEmEstoque();
-	
-	@GetMapping(value = "/semana")
-	@ResponseStatus(code = HttpStatus.OK)
-	List<VeiculoListSemanaResponse> getVeiculosUltimaSemana(Calendar dataAtual, Calendar dataSemana);
 	
 	@GetMapping(value = "/marca")
 	@ResponseStatus(code = HttpStatus.OK)

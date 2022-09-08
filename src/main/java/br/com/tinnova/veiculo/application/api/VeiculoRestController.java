@@ -1,6 +1,5 @@
 package br.com.tinnova.veiculo.application.api;
 
-import java.util.Calendar;
 import java.util.List;
 import java.util.UUID;
 
@@ -67,14 +66,6 @@ public class VeiculoRestController implements VeiculoAPI {
 		VeiculoDetalhadoResponse veiculoDetalhado = veiculoService.buscaVeiculoAtravesId(idVeiculo);
 		log.info("[finaliza] VeiculoRestController - getVeiculoAtravesId");
 		return veiculoDetalhado;
-	}
-
-	@Override
-	public List<VeiculoListSemanaResponse> getVeiculosUltimaSemana(Calendar dataAtual, Calendar dataSemana) {
-		log.info("[inicia] VeiculoRestController - getVeiculosUltimaSemana");
-		List<VeiculoListSemanaResponse> veiculosPorSemanda = veiculoService.buscaVeiculosUltimaSemanda(dataAtual, dataSemana);
-		log.info("[finaliza] VeiculoRestController - getVeiculosUltimaSemana");
-		return veiculosPorSemanda;
 	}
 
 	@Override

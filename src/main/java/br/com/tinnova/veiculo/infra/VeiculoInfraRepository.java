@@ -1,6 +1,5 @@
 package br.com.tinnova.veiculo.infra;
 
-import java.util.Calendar;
 import java.util.List;
 import java.util.UUID;
 
@@ -68,14 +67,6 @@ public class VeiculoInfraRepository implements VeiculoRepository {
 		List<Veiculo> veiculosPorParametros = veiculoSpringDataJPARepository.findByMarcaAndAnoAndCor(marca, ano, cor);
 		log.info("[finaliza] VeiculoInfraRepository - buscaVeiculosPorParametros");
 		return veiculosPorParametros;
-	}
-
-	@Override
-	public List<Veiculo> buscaVeiculosUltimaSemana(Calendar dataAtual, Calendar dataSemana) {
-		log.info("[inicia] VeiculoInfraRepository - buscaVeiculosUltimaSemana");
-//		List<Veiculo> veiculosPorSemana = veiculoSpringDataJPARepository.findByDataHoraDoCadastro(data);
-		log.info("[finaliza] VeiculoInfraRepository - buscaVeiculosUltimaSemana");
-		return null;
 	}
 
 	@Override

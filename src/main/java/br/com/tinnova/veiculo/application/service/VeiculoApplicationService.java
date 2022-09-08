@@ -1,6 +1,5 @@
 package br.com.tinnova.veiculo.application.service;
 
-import java.util.Calendar;
 import java.util.List;
 import java.util.UUID;
 
@@ -16,7 +15,6 @@ import br.com.tinnova.veiculo.application.api.VeiculoListFabricacaoResponse;
 import br.com.tinnova.veiculo.application.api.VeiculoListFabricanteResponse;
 import br.com.tinnova.veiculo.application.api.VeiculoListParametrosResponse;
 import br.com.tinnova.veiculo.application.api.VeiculoListResponse;
-import br.com.tinnova.veiculo.application.api.VeiculoListSemanaResponse;
 import br.com.tinnova.veiculo.application.api.VeiculoRequest;
 import br.com.tinnova.veiculo.application.api.VeiculoResponse;
 import br.com.tinnova.veiculo.application.repository.VeiculoRepository;
@@ -70,14 +68,6 @@ public class VeiculoApplicationService implements VeiculoService {
 		List<Veiculo> veiculos = veiculoRepository.buscaVeiculosPorParametros(marca, ano, cor);
 		log.info("[finaliza] VeiculoApplicationService - buscaVeiculosPorParametros");
 		return VeiculoListParametrosResponse.converte(veiculos);
-	}
-
-	@Override
-	public List<VeiculoListSemanaResponse> buscaVeiculosUltimaSemanda(Calendar dataAtual, Calendar dataSemana) {
-		log.info("[inicia] VeiculoApplicationService - uscaVeiculosUltimaSemand");
-		List<Veiculo> veiculosPorSemanda = veiculoRepository.buscaVeiculosUltimaSemana(dataAtual, dataSemana);
-		log.info("[finaliza] VeiculoApplicationService - uscaVeiculosUltimaSemand");
-		return VeiculoListSemanaResponse.converte(veiculosPorSemanda);
 	}
 
 	@Override
