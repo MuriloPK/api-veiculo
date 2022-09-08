@@ -1,5 +1,6 @@
 package br.com.tinnova.veiculo.application.api;
 
+import java.util.Calendar;
 import java.util.List;
 import java.util.UUID;
 
@@ -8,6 +9,7 @@ import javax.validation.Valid;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.tinnova.veiculo.application.service.VeiculoService;
+import br.com.tinnova.veiculo.domain.Marca;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 
@@ -43,6 +45,14 @@ public class VeiculoRestController implements VeiculoAPI {
 	}
 
 	@Override
+	public List<VeiculoListFabricanteResponse> getVeiculosMarca(Marca marca) {
+		log.info("[inicia] VeiculoRestController - getVeiculosMarca");
+		List<VeiculoListFabricanteResponse> veiculosPorFabricante = veiculoService.listFabricanteVeiculos(marca);
+		log.info("[finaliza] VeiculoRestController - getVeiculosMarca");
+		return veiculosPorFabricante;
+	}
+
+	@Override
 	public List<VeiculoListFabricacaoResponse> getVeiculosAnoFabricacao(Integer ano) {
 		log.info("[inicia] VeiculoRestController - getVeiculosAnoFabricacao");
 		List<VeiculoListFabricacaoResponse> veiculosAnoFabricacao = veiculoService.listaAnoFabricacaoVeiculos(ano);
@@ -58,11 +68,20 @@ public class VeiculoRestController implements VeiculoAPI {
 		log.info("[finaliza] VeiculoRestController - getVeiculoAtravesId");
 		return veiculoDetalhado;
 	}
-	
+
 	@Override
-	public List<VeiculoListParametrosResponse> listaVeiculosPorParametros(String marca, Integer ano, String cor) {
+	public List<VeiculoListSemanaResponse> getVeiculosUltimaSemana(Calendar dataAtual, Calendar dataSemana) {
+		log.info("[inicia] VeiculoRestController - getVeiculosUltimaSemana");
+		List<VeiculoListSemanaResponse> veiculosPorSemanda = veiculoService.buscaVeiculosUltimaSemanda(dataAtual, dataSemana);
+		log.info("[finaliza] VeiculoRestController - getVeiculosUltimaSemana");
+		return veiculosPorSemanda;
+	}
+
+	@Override
+	public List<VeiculoListParametrosResponse> listaVeiculosPorParametros(Marca marca, Integer ano, String cor) {
 		log.info("[inicia] VeiculoRestController - listaVeiculosPorParametros");
-		List<VeiculoListParametrosResponse> veiculosPorParametros = veiculoService.buscaVeiculosPorParametros(marca, ano, cor);
+		List<VeiculoListParametrosResponse> veiculosPorParametros = veiculoService.buscaVeiculosPorParametros(marca,
+				ano, cor);
 		log.info("[finaliza] VeiculoRestController - listaVeiculosPorParametros");
 		return veiculosPorParametros;
 	}

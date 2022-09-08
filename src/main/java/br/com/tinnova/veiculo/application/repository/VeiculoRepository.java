@@ -1,8 +1,10 @@
 package br.com.tinnova.veiculo.application.repository;
 
+import java.util.Calendar;
 import java.util.List;
 import java.util.UUID;
 
+import br.com.tinnova.veiculo.domain.Marca;
 import br.com.tinnova.veiculo.domain.Veiculo;
 
 public interface VeiculoRepository {
@@ -12,5 +14,7 @@ public interface VeiculoRepository {
 	void deletaVeiculoAtravesId(Veiculo veiculo);
 	List<Veiculo> listaEstoqueVeiculos();
 	List<Veiculo> listaAnoFabricacaoVeiculos(Integer ano);
-	List<Veiculo> buscaVeiculosPorParametros(String marca, Integer ano, String cor);
+	List<Veiculo> buscaVeiculosPorParametros(Marca marca, Integer ano, String cor);
+	List<Veiculo> listFabricanteVeiculos(Marca marca);
+	List<Veiculo> buscaVeiculosUltimaSemana(Calendar dataAtual, Calendar dataSemana);
 }

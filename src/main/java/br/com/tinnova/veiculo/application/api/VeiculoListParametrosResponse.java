@@ -3,13 +3,14 @@ package br.com.tinnova.veiculo.application.api;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import br.com.tinnova.veiculo.domain.Marca;
 import br.com.tinnova.veiculo.domain.StatusVeiculo;
 import br.com.tinnova.veiculo.domain.Veiculo;
 import lombok.Value;
 
 @Value
 public class VeiculoListParametrosResponse {
-	private String marca;
+	private Marca marca;
     private Integer ano;
     private String descricao;
     private String cor;

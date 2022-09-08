@@ -1,5 +1,6 @@
 package br.com.tinnova.veiculo.application.api;
 
+import java.util.Calendar;
 import java.util.List;
 import java.util.UUID;
 
@@ -18,6 +19,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.tinnova.veiculo.domain.Marca;
+
 @RestController
 @RequestMapping("/v1/veiculo")
 public interface VeiculoAPI {
@@ -34,13 +37,21 @@ public interface VeiculoAPI {
 	@ResponseStatus(code = HttpStatus.OK)
 	List<VeiculoListEstoqueResponse> getVeiculosEmEstoque();
 	
+	@GetMapping(value = "/semana")
+	@ResponseStatus(code = HttpStatus.OK)
+	List<VeiculoListSemanaResponse> getVeiculosUltimaSemana(Calendar dataAtual, Calendar dataSemana);
+	
+	@GetMapping(value = "/marca")
+	@ResponseStatus(code = HttpStatus.OK)
+	List<VeiculoListFabricanteResponse> getVeiculosMarca(@RequestParam(value ="marca") Marca marca);
+	
 	@GetMapping(value = "/ano")
 	@ResponseStatus(code = HttpStatus.OK)
 	List<VeiculoListFabricacaoResponse> getVeiculosAnoFabricacao(Integer ano);
-	
+		
 	@GetMapping
 	@ResponseStatus(code = HttpStatus.OK)
-	List<VeiculoListParametrosResponse> listaVeiculosPorParametros(@RequestParam(value = "marca") String marca,
+	List<VeiculoListParametrosResponse> listaVeiculosPorParametros(@RequestParam(value = "marca") Marca marca,
 																   @RequestParam(value = "ano") Integer ano,
 																   @RequestParam(value = "cor") String cor);
 

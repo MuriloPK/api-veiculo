@@ -3,6 +3,7 @@ package br.com.tinnova.veiculo.application.api;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
+import br.com.tinnova.veiculo.domain.Marca;
 import br.com.tinnova.veiculo.domain.StatusVeiculo;
 import lombok.Value;
 
@@ -10,8 +11,7 @@ import lombok.Value;
 public class VeiculoAlteraStatusRequest {
 	@NotBlank
 	private String nomeVeiculo;
-	@NotBlank
-	private String marca;
+	private Marca marca;
 	@NotNull
 	private Integer ano;
 	@NotBlank

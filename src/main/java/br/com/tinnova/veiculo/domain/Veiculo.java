@@ -1,6 +1,7 @@
 package br.com.tinnova.veiculo.domain;
 
 import java.time.LocalDateTime;
+import java.util.Calendar;
 import java.util.UUID;
 
 import javax.persistence.Column;
@@ -31,8 +32,8 @@ public class Veiculo {
 	private UUID idVeiculo;
 	@NotBlank
 	private String nomeVeiculo;
-	@NotBlank
-	private String marca;
+	@Enumerated(EnumType.STRING)
+	private Marca marca;
 	@NotNull
 	private Integer ano;
 	@NotBlank
@@ -40,6 +41,9 @@ public class Veiculo {
 	private String descricao;
 	@Enumerated(EnumType.STRING)
 	private StatusVeiculo status;
+
+	private Calendar dataAtual;
+	private Calendar dataSemanda;
 
 	private LocalDateTime dataHoraDoCadastro;
 	private LocalDateTime dataHoraDaUltimaAtualizacao;

@@ -1,5 +1,6 @@
 package br.com.tinnova.veiculo.infra;
 
+import java.util.Calendar;
 import java.util.List;
 import java.util.UUID;
 
@@ -7,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Repository;
 
 import br.com.tinnova.veiculo.application.repository.VeiculoRepository;
+import br.com.tinnova.veiculo.domain.Marca;
 import br.com.tinnova.veiculo.domain.StatusVeiculo;
 import br.com.tinnova.veiculo.domain.Veiculo;
 import br.com.tinnova.veiculo.handler.APIException;
@@ -45,19 +47,35 @@ public class VeiculoInfraRepository implements VeiculoRepository {
 	}
 
 	@Override
+	public List<Veiculo> listFabricanteVeiculos(Marca marca) {
+		log.info("[inicia] VeiculoInfraRepository - listFabricanteVeiculos");
+		List<Veiculo> veiculosPorFabricante = veiculoSpringDataJPARepository.findByMarca(marca);
+		log.info("[finaliza] VeiculoInfraRepository - listFabricanteVeiculos");
+		return veiculosPorFabricante;
+	}
+
+	@Override
 	public List<Veiculo> listaAnoFabricacaoVeiculos(Integer ano) {
 		log.info("[inicia] VeiculoInfraRepository - listaAnoFabricacaoVeiculos");
 		List<Veiculo> veiculosAnoFabricacao = veiculoSpringDataJPARepository.findByAno(ano);
 		log.info("[finaliza] VeiculoInfraRepository - listaAnoFabricacaoVeiculos");
 		return veiculosAnoFabricacao;
 	}
-	
+
 	@Override
-	public List<Veiculo> buscaVeiculosPorParametros(String marca, Integer ano, String cor) {
+	public List<Veiculo> buscaVeiculosPorParametros(Marca marca, Integer ano, String cor) {
 		log.info("[inicia] VeiculoInfraRepository - buscaVeiculosPorParametros");
 		List<Veiculo> veiculosPorParametros = veiculoSpringDataJPARepository.findByMarcaAndAnoAndCor(marca, ano, cor);
 		log.info("[finaliza] VeiculoInfraRepository - buscaVeiculosPorParametros");
 		return veiculosPorParametros;
+	}
+
+	@Override
+	public List<Veiculo> buscaVeiculosUltimaSemana(Calendar dataAtual, Calendar dataSemana) {
+		log.info("[inicia] VeiculoInfraRepository - buscaVeiculosUltimaSemana");
+//		List<Veiculo> veiculosPorSemana = veiculoSpringDataJPARepository.findByDataHoraDoCadastro(data);
+		log.info("[finaliza] VeiculoInfraRepository - buscaVeiculosUltimaSemana");
+		return null;
 	}
 
 	@Override

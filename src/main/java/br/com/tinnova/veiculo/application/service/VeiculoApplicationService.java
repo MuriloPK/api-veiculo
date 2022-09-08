@@ -1,5 +1,6 @@
 package br.com.tinnova.veiculo.application.service;
 
+import java.util.Calendar;
 import java.util.List;
 import java.util.UUID;
 
@@ -12,11 +13,14 @@ import br.com.tinnova.veiculo.application.api.VeiculoAlteracaoRequest;
 import br.com.tinnova.veiculo.application.api.VeiculoDetalhadoResponse;
 import br.com.tinnova.veiculo.application.api.VeiculoListEstoqueResponse;
 import br.com.tinnova.veiculo.application.api.VeiculoListFabricacaoResponse;
+import br.com.tinnova.veiculo.application.api.VeiculoListFabricanteResponse;
 import br.com.tinnova.veiculo.application.api.VeiculoListParametrosResponse;
 import br.com.tinnova.veiculo.application.api.VeiculoListResponse;
+import br.com.tinnova.veiculo.application.api.VeiculoListSemanaResponse;
 import br.com.tinnova.veiculo.application.api.VeiculoRequest;
 import br.com.tinnova.veiculo.application.api.VeiculoResponse;
 import br.com.tinnova.veiculo.application.repository.VeiculoRepository;
+import br.com.tinnova.veiculo.domain.Marca;
 import br.com.tinnova.veiculo.domain.Veiculo;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -51,21 +55,38 @@ public class VeiculoApplicationService implements VeiculoService {
 		log.info("[finaliza] VeiculoApplicationService - listaEstoqueVeiculos");
 		return VeiculoListEstoqueResponse.converte(veiculosEstoque);
 	}
+
 	@Override
-	public List<VeiculoListParametrosResponse> buscaVeiculosPorParametros(String marca, Integer ano, String cor) {
+	public List<VeiculoListFabricanteResponse> listFabricanteVeiculos(Marca marca) {
+		log.info("[inicia] VeiculoApplicationService - listaEstoqueVeiculos");
+		List<Veiculo> veiculosPorFabricante = veiculoRepository.listFabricanteVeiculos(marca);
+		log.info("[finaliza] VeiculoApplicationService - listaEstoqueVeiculos");
+		return VeiculoListFabricanteResponse.converte(veiculosPorFabricante);
+	}
+
+	@Override
+	public List<VeiculoListParametrosResponse> buscaVeiculosPorParametros(Marca marca, Integer ano, String cor) {
 		log.info("[inicia] VeiculoApplicationService - buscaVeiculosPorParametros");
 		List<Veiculo> veiculos = veiculoRepository.buscaVeiculosPorParametros(marca, ano, cor);
 		log.info("[finaliza] VeiculoApplicationService - buscaVeiculosPorParametros");
 		return VeiculoListParametrosResponse.converte(veiculos);
 	}
-	
+
+	@Override
+	public List<VeiculoListSemanaResponse> buscaVeiculosUltimaSemanda(Calendar dataAtual, Calendar dataSemana) {
+		log.info("[inicia] VeiculoApplicationService - uscaVeiculosUltimaSemand");
+		List<Veiculo> veiculosPorSemanda = veiculoRepository.buscaVeiculosUltimaSemana(dataAtual, dataSemana);
+		log.info("[finaliza] VeiculoApplicationService - uscaVeiculosUltimaSemand");
+		return VeiculoListSemanaResponse.converte(veiculosPorSemanda);
+	}
+
 	@Override
 	public List<VeiculoListFabricacaoResponse> listaAnoFabricacaoVeiculos(Integer ano) {
 		log.info("[inicia] VeiculoApplicationService - listaAnoFabricacaoVeiculos");
 		List<Veiculo> veiculosAnoFabricacao = veiculoRepository.listaAnoFabricacaoVeiculos(ano);
 		log.info("[finaliza] VeiculoApplicationService - listaAnoFabricacaoVeiculos");
 		return VeiculoListFabricacaoResponse.converte(veiculosAnoFabricacao);
-		
+
 	}
 
 	@Override

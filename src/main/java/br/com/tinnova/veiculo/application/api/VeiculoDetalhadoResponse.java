@@ -3,6 +3,7 @@ package br.com.tinnova.veiculo.application.api;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
+import br.com.tinnova.veiculo.domain.Marca;
 import br.com.tinnova.veiculo.domain.StatusVeiculo;
 import br.com.tinnova.veiculo.domain.Veiculo;
 import lombok.Value;
@@ -10,7 +11,7 @@ import lombok.Value;
 public class VeiculoDetalhadoResponse {
 	private UUID idVeiculo;
 	private String nomeVeiculo;
-	private String marca;
+	private Marca marca;
 	private Integer ano;
 	private String cor;
 	private String descricao;
